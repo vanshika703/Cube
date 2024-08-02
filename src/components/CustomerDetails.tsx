@@ -3,18 +3,28 @@ import { User } from "../types";
 
 const CustomerDetails = ({ selectedUser }: { selectedUser: User | null }) => {
   console.log("selected user in company", selectedUser);
-  const [imageUrls, setImageUrls] = useState([]);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const fetchImages = async () => {
+    const urls = Array.from(
+      { length: 9 },
+      () =>
+        `https://picsum.photos/800/600?random=${Math.floor(
+          Math.random() * 1000
+        )}`
+    );
+
+    setImageUrls(urls);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    async function fetchImages() {
-      const response = await fetch(
-        `https://api.unsplash.com/photos/random?count=9&client_id=${"FPPcXvbV2TlzX9ZuRhuN7qjJysV9hz8zBY1W6RkOllk"}`
-      );
-      const data = await response.json();
-      setImageUrls(data.map((image: any) => image.urls.small));
-    }
+    setIsLoading(true);
     fetchImages();
-  }, []);
+    const interval = setInterval(fetchImages, 10000);
+    return () => clearInterval(interval);
+  }, [selectedUser]);
 
   return (
     <div className="w-4/5 bg-blue-100 h-[95vh] overflow-scroll">
@@ -40,6 +50,22 @@ const CustomerDetails = ({ selectedUser }: { selectedUser: User | null }) => {
             </p>
           </div>
         </div>
+        {isLoading ? (
+          <div className="flex justify-center items-center mt-5">
+            loading.....
+          </div>
+        ) : (
+          <div className="image-grid flex flex-wrap gap-8 justify-center items-center mt-5">
+            {imageUrls.map((url, index) => (
+              <img
+                key={index}
+                src={url}
+                alt="Random"
+                className="h-72 w-80 rounded-md shadow-md hover:scale-105 transition-all cursor-pointer"
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
