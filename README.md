@@ -13,6 +13,7 @@ Customer Details: Shows detailed information about the selected customer on the 
 
 Includes the customer's name, title, address, and a 3x3 grid of 9 photos.
 The photos in the grid change every 10 seconds. (The API has a rate limit)
+
 Infinite Scrolling: The customer list supports infinite scrolling, loading more customers as the user scrolls down.
 
 ![image](https://github.com/user-attachments/assets/cf55823f-25f6-4262-b72a-4d19753f7f37)
@@ -51,8 +52,6 @@ TypeScript: Used for type safety and better developer experience - User type to 
 React Hooks: Utilized for state management and side effects - useEffect and useState.
 TailwinfCSSCSS: Modular and scoped styling for each component. Minimal style maintained.
 Error Handling: Proper error handling for API requests.
-Infinite Scrolling: Implemented using the IntersectionObserver API
-
 
 ## Installation and Setup
 
