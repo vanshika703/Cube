@@ -8,25 +8,41 @@ import { User } from "../types";
 const MainBody = () => {
   const [allUsers, setAllUsers] = useState<User[]>([]);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  const [initialFetchDone, setInitialFetchDone] = useState<boolean>(false);
 
   const fetchUsers = async () => {
     try {
       const response = await fetch("https://randomuser.me/api/?results=10");
       const data = await response.json();
       setAllUsers((prevUsers) => [...prevUsers, ...data.results]);
-      setSelectedUser(data?.results?.[0]); //
     } catch (error) {
       console.error(error);
     }
   };
 
-  console.log("allUsers", allUsers);
+  useEffect(() => {
+    const fetchInitialUsers = async () => {
+      try {
+        const response = await fetch("https://randomuser.me/api/?results=10");
+        const data = await response.json();
+        setAllUsers(data.results);
+        setSelectedUser(data.results[0]);
+        setInitialFetchDone(true);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  console.log("selectedUser", selectedUser);
+    if (!initialFetchDone) {
+      fetchInitialUsers();
+    }
+  }, [initialFetchDone]);
+
+  useEffect(() => {
+    if (initialFetchDone) {
+      fetchUsers();
+    }
+  }, [initialFetchDone]);
 
   return (
     <div>

@@ -18,6 +18,10 @@ const CustomerSidebar = ({
   setSelectedUser: Dispatch<SetStateAction<User | null>>;
   loadMoreUsers: () => void;
 }) => {
+  // useEffect(() => {
+  //   setSelectedUser(users[0]);
+  // }, []);
+
   const observer = useRef<IntersectionObserver | null>(null);
   const lastUserElementRef = useCallback(
     (node: any) => {
@@ -43,9 +47,9 @@ const CustomerSidebar = ({
               key={user?.email}
               className={
                 (selectedUser?.email === user?.email
-                  ? "border-r-2 border-r-blue-400 bg-gray-100 "
+                  ? " border-r-2 border-r-blue-400 bg-gray-100 "
                   : "") +
-                "flex justify-start items-center p-4 gap-4 border-b cursor-pointer bg-gray-50 hover:bg-gray-100 transition-all "
+                "flex justify-start items-center p-4 gap-4 border-b cursor-pointer bg-gray-50 hover:bg-blue-100 transition-all "
               }
             >
               <img
