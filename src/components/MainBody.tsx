@@ -15,9 +15,9 @@ const MainBody = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("https://randomuser.me/api?results=1000");
-      const data = await response?.json();
-      setAllUsers(data?.results);
+      const response = await fetch("https://randomuser.me/api/?results=10");
+      const data = await response.json();
+      setAllUsers((prevUsers) => [...prevUsers, ...data.results]);
       setSelectedUser(data?.results?.[0]); //
     } catch (error) {
       console.error(error);
@@ -36,6 +36,7 @@ const MainBody = () => {
           users={allUsers}
           selectedUser={selectedUser}
           setSelectedUser={(userId) => setSelectedUser(userId)}
+          loadMoreUsers={fetchUsers}
         />
         <CustomerDetails selectedUser={selectedUser} />
       </div>
