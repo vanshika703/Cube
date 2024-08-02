@@ -1,4 +1,64 @@
-# Getting Started with Create React App
+## Customer Details Portal
+## Overview
+This project is a single-page application (SPA) built with React and TypeScript that displays a customer details portal. The portal features a list of customers on the left side and shows detailed information about the selected customer on the right side. The application supports infinite scrolling for the customer list and dynamically updates a grid of photos every 10 seconds using a public API.
+
+## Features
+Customer List: Displays a list of up to 1000 customers on the left side.
+
+Each card in the list shows the customer's name and title.
+Clicking on a card shows detailed information about the selected customer on the right side.
+The selected card is highlighted.
+Customer Details: Shows detailed information about the selected customer on the right side.
+
+Includes the customer's name, title, address, and a 3x3 grid of 9 photos.
+The photos in the grid change every 10 seconds. (The API has a rate limit)
+Infinite Scrolling: The customer list supports infinite scrolling, loading more customers as the user scrolls down.
+
+![image](https://github.com/user-attachments/assets/cf55823f-25f6-4262-b72a-4d19753f7f37)
+
+![image](https://github.com/user-attachments/assets/f1fe749b-ae70-4444-b6b3-1fea08505899)
+
+
+Tech Stack
+React: For building the user interface.
+TypeScript: For type safety and better developer experience.
+HTML: For structuring the content.
+TailwindCSS: For styling the application.
+Random User API: To fetch random user data.
+Picsum Photos API: To fetch random photos.
+
+## Components
+MainBody
+The main container component that manages the state of the users and the selected user. It handles the initial fetch of users and subsequent fetches .
+
+CustomerSidebar
+Displays the list of customers and handles infinite scrolling using the IntersectionObserver API.
+
+CustomerDetails
+Displays detailed information about the selected customer and fetches a new set of random photos every 10 seconds.
+
+## API Usage
+Random User API: Used to fetch random user data.
+Endpoint: https://randomuser.me/api/?results=10
+Picsum Photos API: Used to fetch random photos for the customer details.
+Endpoint: https://picsum.photos/800/600?random=${Math.floor(Math.random() * 1000)}
+
+
+##Best Practices Followed
+Component-Based Architecture: The application is broken down into reusable components.
+TypeScript: Used for type safety and better developer experience - User type to define the User.
+React Hooks: Utilized for state management and side effects - useEffect and useState.
+TailwinfCSSCSS: Modular and scoped styling for each component. Minimal style maintained.
+Error Handling: Proper error handling for API requests.
+Infinite Scrolling: Implemented using the IntersectionObserver API
+
+
+## Installation and Setup
+
+Clone the Repository:
+git clone https://github.com/your-username/customer-details-portal.git
+cd my-app
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -32,15 +92,3 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
