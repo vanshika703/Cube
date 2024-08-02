@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { User } from "../types";
 
 const CustomerDetails = ({ selectedUser }: { selectedUser: User | null }) => {
-  console.log("selected user in company", selectedUser);
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
