@@ -8,6 +8,7 @@ Customer List: Displays a list of up to 1000 customers on the left side.
 Each card in the list shows the customer's name and title.
 Clicking on a card shows detailed information about the selected customer on the right side.
 The selected card is highlighted.
+
 Customer Details: Shows detailed information about the selected customer on the right side.
 
 Includes the customer's name, title, address, and a 3x3 grid of 9 photos.
